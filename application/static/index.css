@@ -1,0 +1,104 @@
+body {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.user-info {
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.logout {
+    margin-left: auto;
+}
+
+.header {
+    background-color: #007bff;
+    padding: 10px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.venue-row {
+    background-color: #f6f7ff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.venue-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.venue-details {
+    margin-bottom: 10px;
+}
+
+.show-box {
+    background-color: aliceblue;
+    border-radius: 16px;
+    border: 1px solid black;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.show-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.show-details {
+    margin-bottom: 10px;
+}
+
+.show-details .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.show-details .col {
+    flex: 1; 
+}
+
+.chart-container {
+    height: 300px;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px; /* Increased gap to create more space between buttons */
+    margin-top: 10px;
+    justify-content: flex-start; /* Align buttons to the left */
+}
+
+.btn-group .btn {
+    flex: 0 0 auto; /* Prevent buttons from growing */
+}
+
+.mt-4 {
+    margin-top: 20px;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
