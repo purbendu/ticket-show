@@ -311,8 +311,9 @@ def editShowAPI(show_id):
         return jsonify({"error": "Unauthorized"}), 401
 
     showDetails = Shows.query.filter_by(id=show_id).first()
-    showDetails.startTime = datetime.strptime(showDetails.startTime, "%I:%M %p").strftime("%H:%M")
-    showDetails.endTime = datetime.strptime(showDetails.endTime, "%I:%M %p").strftime("%H:%M")
+    print(showDetails.startTime,"  ",showDetails.endTime)
+    startTime = datetime.strptime(showDetails.startTime, "%I:%M %p").strftime("%H:%M")
+    endTime = datetime.strptime(showDetails.endTime, "%I:%M %p").strftime("%H:%M")
 
     if request.method == 'POST':
         data = request.get_json()
@@ -338,8 +339,8 @@ def editShowAPI(show_id):
         show_data = {
             "nameOfShow": showDetails.nameOfShow,
             "ticketPrice": showDetails.ticketPrice,
-            "startTime": showDetails.startTime,
-            "endTime": showDetails.endTime,
+            "startTime": startTime,
+            "endTime": endTime,
             "tags": showDetails.tags,
         }
         return jsonify(show_data)
