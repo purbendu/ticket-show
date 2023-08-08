@@ -16,15 +16,15 @@ from weasyprint import HTML
 from email import encoders
 from email.mime.base import MIMEBase
 
-SMPTP_SERVER_HOST = "localhost"
-SMPTP_SERVER_PORT = 1025
-SENDER_ADDRESS = "noreply.ticketshow@gmail.com"
-SENDER_PASSWORD = ""
+# SMPTP_SERVER_HOST = "localhost"
+# SMPTP_SERVER_PORT = 1025
+# SENDER_ADDRESS = "noreply.ticketshow@gmail.com"
+# SENDER_PASSWORD = ""
 
-@celery.on_after_finalize.connect
-def setup_periodic_tasks(sender, **kwargs):
-    sender.add_periodic_task(crontab(hour=17, minute=30, day_of_week='*'), sendDailyReminder.s(), name='Send reminder everyday at 5:30PM')
-    sender.add_periodic_task(crontab(day_of_month='1', hour=7, minute=30), sendMonthlyReport.s(), name='Send monthly report every month at 7:30AM')
+# @celery.on_after_finalize.connect
+# def setup_periodic_tasks(sender, **kwargs):
+#     sender.add_periodic_task(crontab(hour=17, minute=30, day_of_week='*'), sendDailyReminder.s(), name='Send reminder everyday at 5:30PM')
+#     sender.add_periodic_task(crontab(day_of_month='1', hour=7, minute=30), sendMonthlyReport.s(), name='Send monthly report every month at 7:30AM')
 
 def send_email (message):
     s = smtplib.SMTP(host=SMPTP_SERVER_HOST, port=SMPTP_SERVER_PORT)
