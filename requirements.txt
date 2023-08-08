@@ -20,3 +20,4 @@ flask-sse
 gunicorn
 gevent
 Flask-Caching
+celery-with-redis==3.0
