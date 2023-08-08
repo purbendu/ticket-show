@@ -21,3 +21,4 @@ gunicorn
 gevent
 Flask-Caching
 celery-with-redis==3.0
+pandas==2.0.3
