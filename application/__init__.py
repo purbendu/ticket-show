@@ -32,9 +32,12 @@ def create_app():
     # app.config["CACHE_REDIS_HOST"] = "localhost"
     # app.config["CACHE_REDIS_PORT"] = 6379
 
-    CELERY_BROKER_URL = "redis://localhost:6379/0"
-    CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+    # CELERY_BROKER_URL = "redis://localhost:6379/0"
+    # CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
 
+    CELERY_BROKER_URL = "redis://red-ckn5r6783ejs739r8pb0:6379/0"
+    CELERY_RESULT_BACKEND = "redis://red-ckn5r6783ejs739r8pb0:6379/0"
+    
     from .controllers import main
     app.register_blueprint(main)
 
