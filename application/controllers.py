@@ -7,7 +7,7 @@ from .models import db
 from weasyprint import HTML
 import requests
 import pandas as pd
-from .tasks import generateReport
+# from .tasks import generateReport
 
 main = Blueprint("main", __name__)
 
@@ -131,14 +131,40 @@ def adminDashboard():
     
     return redirect(url_for('main.adminLogin'))
 
+def generateReport(venue_id):
+    csv_data = {'Shows':[], 'Tickets Booked': [], 'User Rating': [], 'Tickets Left':[], 'Tags':[], 'Tickets Price':[]}
+    
+    shows = Shows.query.filter_by(venueId=venue_id).all()
+    for show in shows:
+        csv_data['Shows'].append(show.nameOfShow)
+        csv_data['Tickets Booked'].append(show.bookedSeats)
+        csv_data['Tickets Price'].append(show.ticketPrice)
+        csv_data['Tickets Left'].append(show.venue.totalSeats - show.bookedSeats)
+        csv_data['Tags'].append(show.tags)
+        venueName = show.venue.name
 
+        str = show.ratings.split(",")
+        avgRating = 0
+        count = 0
+        for i in range(10):
+            avgRating += (i+1)*int(str[i])
+            count += int(str[i])
+            
+        if count == 0:
+            csv_data['User Rating'].append(0.0)
+        else:
+            csv_data['User Rating'].append(avgRating/count)
+
+    df = pd.DataFrame(csv_data)
+    df.to_csv(f'{venueName} Report.csv', index=False)
+    
 @main.route("/generateReport/<int:venue_id>")
 @login_required
 def getReport(venue_id):
     if not isAdminLoggedIn:
         return jsonify({"message": "Unauthorized"}), 401
     
-    generateReport.delay(venue_id)
+    generateReport(venue_id)
     
     return jsonify({"message": "Successfully downloaded"}), 201
 
