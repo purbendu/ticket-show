@@ -156,7 +156,11 @@ def generateReport(venue_id):
             csv_data['User Rating'].append(avgRating/count)
 
     df = pd.DataFrame(csv_data)
-    df.to_csv(f'{venueName} Report.csv', index=False)
+    
+    response = make_response(df.to_csv(f'{venueName} Report.csv', index=False))
+    response.headers["Content-Disposition"] = "attachment; filename=f'{venueName} Report.csv'"
+    response.headers["Content-type"] = "text/csv"
+    response output
     
 @main.route("/generateReport/<int:venue_id>")
 @login_required
