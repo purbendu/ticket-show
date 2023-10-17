@@ -45,7 +45,7 @@ def home():
 
 @main.route("/userLogin/")
 def userLogin():
-    return render_template('userlogin.html')
+    return render_template('userLogin.html')
 
 @main.route("/userloginAPI", methods=['POST'])
 def userLoginAPI():
