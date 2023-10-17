@@ -35,8 +35,8 @@ def create_app():
     # CELERY_BROKER_URL = "redis://localhost:6379/0"
     # CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
 
-    CELERY_BROKER_URL = "redis://red-ckn5r6783ejs739r8pb0:6379/0"
-    CELERY_RESULT_BACKEND = "redis://red-ckn5r6783ejs739r8pb0:6379/0"
+    CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+    CELERY_RESULT_BACKEND = os.getenv("CELERY_BROKER_URL")
     
     from .controllers import main
     app.register_blueprint(main)
