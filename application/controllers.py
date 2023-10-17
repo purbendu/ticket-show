@@ -157,11 +157,6 @@ def generateReport(venue_id):
 
     df = pd.DataFrame(csv_data)
     
-    response = make_response(df.to_csv(f'{venueName} Report.csv', index=False))
-    response.headers["Content-Disposition"] = "attachment; filename=f'{venueName} Report.csv'"
-    response.headers["Content-type"] = "text/csv"
-    response output
-    
 @main.route("/generateReport/<int:venue_id>")
 @login_required
 def getReport(venue_id):
