@@ -1,37 +1,27 @@
 Vue.component('login', {
     template: `
     <div class="text-center">
-    <main class="form-signin">
-        <h1 align="text-center">
-            TicketShow
-        </h1>
-        <br><br>
-        <div v-if="flashMessage">
-            <ul class="flashes">
-                <li>{{ flashMessage }}</li>
-            </ul>
-        </div>
+    
+    <div class="jumbotron text-center cyan">
+    <h2>Admin Login</h2>
+    <br>
+    <h6>Enter Email: abcd@gmail.com</h6>
+    <h6>Enter password: 1234</h6>
+    </div>
+    <br> <br> 
+    <div class="container box" style="text-align:center;">
         <form @submit.prevent="login">
-            <h1 class="h3 mb-3 fw-normal">Login</h1>
-            <div class="form-floating d-flex justify-content-center align-items-center">
-                <div class="form-group">
-                    <input type="email" class="form-control" v-model="email" placeholder="Email" required>
-                </div>
-            </div>
+            <input type="email" class="form-control" v-model="email" placeholder="Email" required>
         <br>
-            <div class="form-floating d-flex justify-content-center align-items-center">
-                <div class="form-group">
-                    <input type="password" class="form-control" v-model="password" placeholder="Password" required>
-                </div>
-            </div>
+            <input type="password" class="form-control" v-model="password" placeholder="Password" required>
         <br>
-
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
-        <br><br>
-    </main>
-</div>
-
+    </div>
+    <div v-if="flashMessage">
+    {{ flashMessage }}
+    </div>
+    </div>
     `,
     data: function() {
         return {

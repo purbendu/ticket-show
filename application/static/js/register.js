@@ -1,45 +1,28 @@
 Vue.component('register', {
     template: `
-    <body class="text-center">
-    <main class="form-signin">
-      <h1 align="text-center">TicketShow</h1>
-      <br /><br />
+    <div class="text-center">
+      <div class="jumbotron text-center cyan">
+      <h2>Register</h2>
+      <a class="navbar-brand cyan-link" href="/userLogin">Already have an account? Click here to Login !</a>
       </div>
+    <div class="container box" style="text-align:center;">
       <form @submit.prevent="register">
-        <h1 class="h3 mb-3 fw-normal">Register</h1>
-        <div class="form-floating d-flex justify-content-center align-items-center">
-          <div class="form-group">
-            <input type="email" class="form-control" v-model="email" placeholder="Email" required />
-          </div>
+        <div class="form-group">
+          <input type="email" class="form-control" v-model="email" placeholder="Email" required />
+          <br>
+          <input type="text" class="form-control" v-model="name" placeholder="Name" required />
+          <br>
+          <input type="password" class="form-control" v-model="password" placeholder="Password" required />
+          <br>
         </div>
-        <br>
-
-        <div class="form-floating d-flex justify-content-center align-items-center">
-          <div class="form-group">
-            <input type="text" class="form-control" v-model="name" placeholder="Name" required />
-          </div>
-        </div>
-        <br>
-        <div class="form-floating d-flex justify-content-center align-items-center">
-          <div class="form-group">
-            <input type="password" class="form-control" v-model="password" placeholder="Password" required />
-          </div>
-        </div>
-        <br>
-
-        <div class="d-flex justify-content-center align-items-center">
-          <button type="submit" class="btn btn-primary">Register</button>
-        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
       </form>
       <br /><br />
       <div v-if="flashMessage">
-        <ul class="flashes">
-          <li>{{ flashMessage }}</li>
-        </ul>
+      {{ flashMessage }}
       </div>
-      <a href="#" style="text-align: center;">Already have an account? Login here</a>
-    </main>
-  </body>
+    </div>
+  </div>
     `,
     data: function() {
         return {

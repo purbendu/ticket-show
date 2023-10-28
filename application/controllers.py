@@ -156,6 +156,7 @@ def generateReport(venue_id):
             csv_data['User Rating'].append(avgRating/count)
 
     df = pd.DataFrame(csv_data)
+    df.to_csv(f'{venueName} Report.csv', index=False)
     
 @main.route("/generateReport/<int:venue_id>")
 @login_required
