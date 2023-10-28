@@ -17,9 +17,9 @@ Vue.component('login', {
     <br>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    </div>
     <div v-if="flashMessage">
     {{ flashMessage }}
-    </div>
     </div>
 </div>
 
