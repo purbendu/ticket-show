@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, jsonify, Response, request, current_app
+from flask import Blueprint, render_template, redirect, url_for, flash, jsonify, Response, request, current_app,make_response
 from flask_login import login_user, LoginManager, login_required, logout_user, current_user
 from flask_bcrypt import Bcrypt
 from .models import User, Venue, Shows, Bookings
@@ -7,8 +7,7 @@ from .models import db
 from weasyprint import HTML
 import requests
 import pandas as pd
-# from .tasks import generateReport
-
+import io
 main = Blueprint("main", __name__)
 
 login_manager = LoginManager()
@@ -156,15 +155,24 @@ def generateReport(venue_id):
             csv_data['User Rating'].append(avgRating/count)
 
     df = pd.DataFrame(csv_data)
-    df.to_csv(f'{venueName} Report.csv', index=False)
-    
+    filename = f'{venueName} Report.csv'
+
+    # Save the CSV data in-memory
+    csv_output = df.to_csv(index=False)
+
+    response = make_response(csv_output)
+    cd = f'attachment; filename={filename}'
+    response.headers['Content-Disposition'] = cd 
+    response.mimetype='text/csv'
+
+    return response
 @main.route("/generateReport/<int:venue_id>")
 @login_required
 def getReport(venue_id):
     if not isAdminLoggedIn:
         return jsonify({"message": "Unauthorized"}), 401
     
-    generateReport(venue_id)
+    generateReport(venue_id)  
     
     return jsonify({"message": "Successfully downloaded"}), 201
 

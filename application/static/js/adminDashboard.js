@@ -15,7 +15,7 @@ Vue.component('venue', {
         <a :href="'/editVenue/' + venue.id"><button class="btn btn-primary">Edit</button></a>
         <button class="btn btn-danger" @click="confirmDeleteVenue(venue.id)">Delete</button>
         <a :href="'/addShow/' + venue.id" class="btn btn-outline-primary">Create Show at {{ venue.name }}</a>
-        <button class="btn btn-outline-primary" @click="getReport(venue.id)">Get Report of Running Shows at {{ venue.name }}</button>
+        <!-- <button class="btn btn-outline-primary" @click="getReport(venue.id)">Get Report of Running Shows at {{ venue.name }}</button>  -->
         <div v-if="flashMessage">
         <ul class="flashes">
           <li>{{ flashMessage }}</li>
